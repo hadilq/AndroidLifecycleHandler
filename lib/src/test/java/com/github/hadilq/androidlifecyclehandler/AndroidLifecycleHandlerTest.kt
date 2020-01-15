@@ -19,12 +19,12 @@ class AndroidLifecycleHandlerTest {
     private lateinit var life: Life
 
     private lateinit var owner: TestLifecycleOwner
-    private lateinit var handler: AndroidLifecycleHandler
+    private lateinit var handler: AndroidLifecycleHandlerImpl
 
     @Before
     fun setup() {
         owner = TestLifecycleOwner()
-        handler = AndroidLifecycleHandler()
+        handler = AndroidLifecycleHandlerImpl()
     }
 
     @Test

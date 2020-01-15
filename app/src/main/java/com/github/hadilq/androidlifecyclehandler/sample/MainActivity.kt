@@ -17,7 +17,7 @@ package com.github.hadilq.androidlifecyclehandler.sample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import com.github.hadilq.androidlifecyclehandler.AndroidExtendedLifecycleHandler
+import com.github.hadilq.androidlifecyclehandler.AndroidExtendedLifecycleHandlerImpl
 import com.github.hadilq.androidlifecyclehandler.ExtendedLife
 import com.github.hadilq.androidlifecyclehandler.LifeSpan
 
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        AndroidExtendedLifecycleHandler().register(this, creature, LifeSpan.CREATED, KEY)
+        AndroidExtendedLifecycleHandlerImpl().register(this, creature, LifeSpan.CREATED, KEY)
     }
 
     companion object {

@@ -20,12 +20,12 @@ class AndroidExtendedLifecycleHandlerTest {
     private lateinit var life: ExtendedLife
 
     private lateinit var owner: TestSaveStateRegistryOwner
-    private lateinit var handler: AndroidExtendedLifecycleHandler
+    private lateinit var handler: AndroidExtendedLifecycleHandlerImpl
 
     @Before
     fun setup() {
         owner = TestSaveStateRegistryOwner()
-        handler = AndroidExtendedLifecycleHandler()
+        handler = AndroidExtendedLifecycleHandlerImpl()
     }
 
     @Test
