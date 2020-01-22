@@ -16,8 +16,8 @@
 package com.github.hadilq.androidlifecyclehandler
 
 /***
- * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after calling
- * of [onBorn] and before [onDie] is when the object is alive.
+ * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after
+ * calling [onBorn] and before [onDie] is when the object is alive.
  *
  * [AndroidLifecycleHandler] is able to register this object.
  */

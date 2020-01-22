@@ -14,8 +14,8 @@ First if you have no plane to save your data in the lifecycle, use an object of 
 
 ```kotlin
 /***
- * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after calling
- * of [onBorn] and before [onDie] is when the object is alive.
+ * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after
+ * calling [onBorn] and before [onDie] is when the object is alive.
  *
  * [AndroidLifecycleHandler] is able to register this object.
  */
@@ -38,8 +38,8 @@ interface Life {
 Then if you want to save your data for the next lifecycle, use an object of the `ExtendedLife`.
 ```kotlin
 /***
- * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after calling
- * of [onBorn] and before [onDie] is when the object is alive.
+ * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after
+ * calling [onBorn] and before [onDie] is when the object is alive.
  *
  * [AndroidExtendedLifecycleHandler] is able to register this object.
  */
