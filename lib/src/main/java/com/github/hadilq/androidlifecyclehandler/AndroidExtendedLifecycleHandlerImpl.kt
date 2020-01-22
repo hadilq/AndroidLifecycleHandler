@@ -55,7 +55,7 @@ class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRe
     override fun born() {
         if (!alive) {
             alive = true
-            life.onBorn(savedStateRegistry.consumeRestoredStateForKey(key) ?: keepBundle ?: Bundle())
+            life.onBorn(savedStateRegistry.consumeRestoredStateForKey(key) ?: keepBundle)
         }
     }
 

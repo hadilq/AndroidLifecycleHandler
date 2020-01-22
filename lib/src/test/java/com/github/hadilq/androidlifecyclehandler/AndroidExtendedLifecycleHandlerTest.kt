@@ -1,6 +1,7 @@
 package com.github.hadilq.androidlifecyclehandler
 
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.anyOrNull
 import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
@@ -45,7 +46,7 @@ class AndroidExtendedLifecycleHandlerTest {
 
         owner.create()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -56,7 +57,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.save()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -78,7 +79,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -89,7 +90,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -102,7 +103,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -116,7 +117,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -130,7 +131,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -145,7 +146,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -161,7 +162,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -177,7 +178,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -193,7 +194,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -203,7 +204,7 @@ class AndroidExtendedLifecycleHandlerTest {
 
         handler.register(owner, life, LifeSpan.STARTED, KEY)
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -211,7 +212,7 @@ class AndroidExtendedLifecycleHandlerTest {
     fun `in case of just registration, STARTED life should not be born or die`() {
         handler.register(owner, life, LifeSpan.STARTED, KEY)
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -221,7 +222,7 @@ class AndroidExtendedLifecycleHandlerTest {
 
         owner.create()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -232,7 +233,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.start()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -243,7 +244,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -255,7 +256,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -268,7 +269,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
         owner.start()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -282,7 +283,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
         owner.start()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -295,7 +296,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -309,7 +310,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -323,7 +324,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -336,7 +337,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.start()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -352,7 +353,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.start()
         owner.resume()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -366,7 +367,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.start()
         owner.stop()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -384,7 +385,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.pause()
         owner.stop()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -399,7 +400,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -413,7 +414,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.start()
         owner.save()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -428,7 +429,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -444,7 +445,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -460,7 +461,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -476,7 +477,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -487,7 +488,7 @@ class AndroidExtendedLifecycleHandlerTest {
 
         handler.register(owner, life, LifeSpan.RESUMED, KEY)
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -495,7 +496,7 @@ class AndroidExtendedLifecycleHandlerTest {
     fun `in case of just registration, RESUMED life should not be born or die`() {
         handler.register(owner, life, LifeSpan.RESUMED, KEY)
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -505,7 +506,7 @@ class AndroidExtendedLifecycleHandlerTest {
 
         owner.create()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -516,7 +517,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.start()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -528,7 +529,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.start()
         owner.resume()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -539,7 +540,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.resume()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -550,7 +551,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.create()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -563,7 +564,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
         owner.resume()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -577,7 +578,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
         owner.resume()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -590,7 +591,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -604,7 +605,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -618,7 +619,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life, never()).onBorn(any())
+        verify(life, never()).onBorn(anyOrNull())
         verify(life, never()).onDie()
     }
 
@@ -633,7 +634,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -646,7 +647,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.resume()
         owner.pause()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -660,7 +661,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.pause()
         owner.resume()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -675,7 +676,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.resume()
         owner.pause()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -693,7 +694,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.pause()
         owner.stop()
 
-        verify(life, times(2)).onBorn(any())
+        verify(life, times(2)).onBorn(anyOrNull())
         verify(life, times(2)).onDie()
     }
 
@@ -709,7 +710,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -725,7 +726,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.stop()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
@@ -741,7 +742,7 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.save()
         owner.destroy()
 
-        verify(life).onBorn(any())
+        verify(life).onBorn(anyOrNull())
         verify(life).onDie()
     }
 
