@@ -31,6 +31,11 @@ class TestSaveStateRegistryOwner : SavedStateRegistryOwner {
         @NonNull
         get() = registry.currentState
 
+    fun create(bundle: Bundle): TestSaveStateRegistryOwner {
+        controller.performRestore(bundle)
+        return handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    }
+
     fun create(): TestSaveStateRegistryOwner {
         controller.performRestore(Bundle())
         return handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -58,6 +63,11 @@ class TestSaveStateRegistryOwner : SavedStateRegistryOwner {
 
     fun save(): TestSaveStateRegistryOwner {
         controller.performSave(Bundle())
+        return this
+    }
+
+    fun save(bundle: Bundle): TestSaveStateRegistryOwner {
+        controller.performSave(bundle)
         return this
     }
 

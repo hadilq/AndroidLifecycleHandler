@@ -7,10 +7,13 @@ import com.nhaarman.mockito_kotlin.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 class AndroidExtendedLifecycleHandlerTest {
 
     @get:Rule
@@ -253,17 +256,6 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
 
         verify(life, never()).onBorn(any())
-        verify(life, never()).onDie()
-    }
-
-    @Test
-    fun `in case of registration then create then start, STARTED life should born nut not die`() {
-        handler.register(owner, life, LifeSpan.STARTED, KEY)
-
-        owner.create()
-        owner.start()
-
-        verify(life).onBorn(any())
         verify(life, never()).onDie()
     }
 
@@ -559,17 +551,6 @@ class AndroidExtendedLifecycleHandlerTest {
         owner.destroy()
 
         verify(life, never()).onBorn(any())
-        verify(life, never()).onDie()
-    }
-
-    @Test
-    fun `in case of registration then create then resume, RESUMED life should born but not die`() {
-        handler.register(owner, life, LifeSpan.RESUMED, KEY)
-
-        owner.create()
-        owner.resume()
-
-        verify(life).onBorn(any())
         verify(life, never()).onDie()
     }
 

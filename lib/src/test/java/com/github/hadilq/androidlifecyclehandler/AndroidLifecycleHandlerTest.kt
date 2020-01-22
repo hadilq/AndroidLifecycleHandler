@@ -6,10 +6,13 @@ import com.nhaarman.mockito_kotlin.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 class AndroidLifecycleHandlerTest {
 
     @get:Rule
@@ -148,7 +151,7 @@ class AndroidLifecycleHandlerTest {
     }
 
     @Test
-    fun `in case of registration then create then start, STARTED life should born nut not die`() {
+    fun `in case of registration then create then start, STARTED life should be born but not die`() {
         handler.register(owner, life, LifeSpan.STARTED)
 
         owner.create()

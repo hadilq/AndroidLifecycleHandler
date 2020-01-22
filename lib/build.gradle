@@ -39,7 +39,7 @@ android {
     }
 
     testOptions {
-        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
     }
 }
 
@@ -51,6 +51,7 @@ dependencies {
 
     testImplementation Depends.junit
     testImplementation Depends.mockito
+    testImplementation Depends.robolectric
 }
 
 if (project.hasProperty("signing.keyId")) {

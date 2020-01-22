@@ -35,4 +35,5 @@ object Versions {
     //Unit Testing
     const val junit = "4.12"
     const val mockito = "1.4.0"
+    const val robolectric = "4.3"
 }

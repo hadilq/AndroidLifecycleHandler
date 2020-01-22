@@ -21,4 +21,5 @@ object Depends {
 
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "com.nhaarman:mockito-kotlin:${Versions.mockito}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 }
