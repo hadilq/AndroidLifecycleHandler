@@ -136,7 +136,7 @@ Download via gradle
 ```groovy
 implementation "com.github.hadilq:androidlifecyclehandler:$libVersion"
 ```
-where the `libVersion` is [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandlerbadge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler)
+where the `libVersion` is [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler)
 
 Contribution
 ---
