@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
     private val creature = object : ExtendedLife {
 
-        override fun onBorn(bundle: Bundle) {
+        override fun onBorn(bundle: Bundle?) {
             // Start being alive
         }
 
