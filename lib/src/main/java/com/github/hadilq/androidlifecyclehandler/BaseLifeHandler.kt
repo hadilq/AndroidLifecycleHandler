@@ -15,17 +15,23 @@
  */
 package com.github.hadilq.androidlifecyclehandler
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-abstract class BaseLifecycleHandler : LifecycleObserver {
+abstract class BaseLifeHandler : LifecycleObserver {
 
     protected abstract val lifecycle: Lifecycle
     protected abstract val lifeSpan: LifeSpan
 
+    @MainThread
     protected abstract fun born()
+
+    @MainThread
     protected abstract fun die()
+
+    @MainThread
     protected abstract fun unregister()
 
     protected fun bornIfPossible() {
@@ -34,6 +40,10 @@ abstract class BaseLifecycleHandler : LifecycleObserver {
         } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) && lifeSpan == LifeSpan.STARTED) {
             born()
         } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED) && lifeSpan == LifeSpan.CREATED) {
+            born()
+        } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED) && lifeSpan == LifeSpan.CONFIGURATION_CHANGED) {
+            born()
+        } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED) && lifeSpan == LifeSpan.USER_FLOW) {
             born()
         }
     }
@@ -47,6 +57,8 @@ abstract class BaseLifecycleHandler : LifecycleObserver {
         ) {
             die()
         } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.DESTROYED) && lifeSpan == LifeSpan.CREATED) {
+            die()
+        } else if (lifecycle.currentState.isAtLeast(Lifecycle.State.DESTROYED) && lifeSpan == LifeSpan.USER_FLOW) {
             die()
         }
     }

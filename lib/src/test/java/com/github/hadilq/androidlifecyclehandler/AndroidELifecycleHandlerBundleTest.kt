@@ -17,24 +17,24 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class AndroidExtendedLifecycleHandlerBundleTest {
+class AndroidELifecycleHandlerBundleTest {
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
     @Mock
-    private lateinit var life: ExtendedLife
+    private lateinit var life: ELife
 
     @Mock
     private lateinit var bundle: Bundle
 
     private lateinit var owner: TestSaveStateRegistryOwner
-    private lateinit var handler: AndroidExtendedLifecycleHandlerImpl
+    private lateinit var handler: AndroidELifeHandlerImpl
 
     @Before
     fun setup() {
         owner = TestSaveStateRegistryOwner()
-        handler = AndroidExtendedLifecycleHandlerImpl()
+        handler = AndroidELifeHandlerImpl()
     }
 
     @Test

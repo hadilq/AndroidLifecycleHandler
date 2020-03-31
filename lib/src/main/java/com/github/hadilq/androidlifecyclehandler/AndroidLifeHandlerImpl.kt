@@ -15,13 +15,14 @@
  */
 package com.github.hadilq.androidlifecyclehandler
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 
 /**
- * The implementation of [AndroidLifecycleHandler].
+ * The implementation of [AndroidLifeHandler].
  */
-class AndroidLifecycleHandlerImpl : BaseLifecycleHandler(), AndroidLifecycleHandler {
+class AndroidLifeHandlerImpl : BaseLifeHandler(), AndroidLifeHandler {
 
     override val lifecycle by lazy { owner.lifecycle }
     private var alive: Boolean = false
@@ -30,6 +31,7 @@ class AndroidLifecycleHandlerImpl : BaseLifecycleHandler(), AndroidLifecycleHand
     private lateinit var owner: LifecycleOwner
     private lateinit var life: Life
 
+    @MainThread
     override fun register(owner: LifecycleOwner, life: Life, lifeSpan: LifeSpan) {
         this.owner = owner
         this.life = life
@@ -44,6 +46,7 @@ class AndroidLifecycleHandlerImpl : BaseLifecycleHandler(), AndroidLifecycleHand
         }
     }
 
+    @MainThread
     override fun born() {
         if (!alive) {
             alive = true
@@ -51,6 +54,7 @@ class AndroidLifecycleHandlerImpl : BaseLifecycleHandler(), AndroidLifecycleHand
         }
     }
 
+    @MainThread
     override fun die() {
         if (alive) {
             alive = false
@@ -58,6 +62,7 @@ class AndroidLifecycleHandlerImpl : BaseLifecycleHandler(), AndroidLifecycleHand
         }
     }
 
+    @MainThread
     override fun unregister() {
         lifecycle.removeObserver(this)
     }

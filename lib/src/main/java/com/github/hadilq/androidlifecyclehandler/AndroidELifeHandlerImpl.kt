@@ -16,15 +16,16 @@
 package com.github.hadilq.androidlifecyclehandler
 
 import android.os.Bundle
+import androidx.annotation.MainThread
 import androidx.lifecycle.Lifecycle
 import androidx.savedstate.SavedStateRegistry
 import androidx.savedstate.SavedStateRegistryOwner
 
 /**
- * The implementation of [AndroidExtendedLifecycleHandler].
+ * The implementation of [AndroidELifeHandler].
  */
-class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRegistry.SavedStateProvider,
-    AndroidExtendedLifecycleHandler {
+class AndroidELifeHandlerImpl : BaseLifeHandler(), SavedStateRegistry.SavedStateProvider,
+    AndroidELifeHandler {
 
     override val lifecycle by lazy { owner.lifecycle }
     private val savedStateRegistry by lazy { owner.savedStateRegistry }
@@ -33,10 +34,11 @@ class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRe
 
     override lateinit var lifeSpan: LifeSpan
     private lateinit var owner: SavedStateRegistryOwner
-    private lateinit var life: ExtendedLife
+    private lateinit var life: ELife
     private lateinit var key: String
 
-    override fun register(owner: SavedStateRegistryOwner, life: ExtendedLife, lifeSpan: LifeSpan, key: String) {
+    @MainThread
+    override fun register(owner: SavedStateRegistryOwner, life: ELife, lifeSpan: LifeSpan, key: String) {
         this.owner = owner
         this.life = life
         this.lifeSpan = lifeSpan
@@ -52,6 +54,7 @@ class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRe
         }
     }
 
+    @MainThread
     override fun born() {
         if (!alive) {
             alive = true
@@ -59,6 +62,7 @@ class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRe
         }
     }
 
+    @MainThread
     override fun die() {
         if (alive) {
             alive = false
@@ -66,6 +70,7 @@ class AndroidExtendedLifecycleHandlerImpl : BaseLifecycleHandler(), SavedStateRe
         }
     }
 
+    @MainThread
     override fun unregister() {
         lifecycle.removeObserver(this)
         savedStateRegistry.unregisterSavedStateProvider(key)

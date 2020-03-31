@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class AndroidLifecycleHandlerTest {
+class AndroidLifeHandlerTest {
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
@@ -22,12 +22,12 @@ class AndroidLifecycleHandlerTest {
     private lateinit var life: Life
 
     private lateinit var owner: TestLifecycleOwner
-    private lateinit var handler: AndroidLifecycleHandlerImpl
+    private lateinit var handler: AndroidLifeHandlerImpl
 
     @Before
     fun setup() {
         owner = TestLifecycleOwner()
-        handler = AndroidLifecycleHandlerImpl()
+        handler = AndroidLifeHandlerImpl()
     }
 
     @Test
