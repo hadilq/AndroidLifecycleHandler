@@ -37,7 +37,7 @@ interface Life {
 }
 ```
 
-Then if you want to save your data for the next lifecycle, use an object of the `ExtendedLife`.
+Then if you want to save your data for the next lifecycle, use an object of the `ELife`.
 ```kotlin
 /***
  * Defines an object with **extended** lifecycle respect to [Life]. It has simply two callbacks [onBorn] and [onDie] to
