@@ -17,13 +17,13 @@ package com.github.hadilq.androidlifecyclehandler.sample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import com.github.hadilq.androidlifecyclehandler.AndroidExtendedLifecycleHandlerImpl
-import com.github.hadilq.androidlifecyclehandler.ExtendedLife
+import com.github.hadilq.androidlifecyclehandler.AndroidELifeHandlerImpl
+import com.github.hadilq.androidlifecyclehandler.ELife
 import com.github.hadilq.androidlifecyclehandler.LifeSpan
 
 class MainActivity : ComponentActivity() {
 
-    private val creature = object : ExtendedLife {
+    private val creature = object : ELife {
 
         override fun onBorn(bundle: Bundle?) {
             // Start being alive
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        AndroidExtendedLifecycleHandlerImpl().register(this, creature, LifeSpan.CREATED, KEY)
+        AndroidELifeHandlerImpl().register(this, creature, LifeSpan.CREATED, KEY)
     }
 
     companion object {

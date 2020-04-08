@@ -35,8 +35,8 @@ android {
 dependencies {
     kapt(Depends.lifecycleCompiler)
 
-//    implementation(project(":lib"))
-    implementation("${Versions.groupId}:${Versions.artifactId}:${Versions.libVersion}")
+    implementation(project(":lib"))
+//    implementation("${Versions.groupId}:${Versions.artifactId}:${Versions.libVersion}")
 
     implementation(Depends.kotlin)
     implementation(Depends.appCompat)

@@ -17,7 +17,7 @@ First if you have no plane to save your data in the lifecycle, use an object of 
  * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after
  * calling [onBorn] and before [onDie] is when the object is alive.
  *
- * [AndroidLifecycleHandler] is able to register this object.
+ * [AndroidLifeHandler] is able to register this object.
  */
 interface Life {
 
@@ -25,12 +25,14 @@ interface Life {
      * Calls when the life starts, depending on the [LifeSpan] while registering. This method will be called
      * onCreate, onStart or onResume of the LifecycleOwner.
      */
+    @MainThread
     fun onBorn()
 
     /**
      * Calls when the life ends, depending on the [LifeSpan] while registering. This method will be called
      * onPause, onStop or onDestroy of the LifecycleOwner.
      */
+    @MainThread
     fun onDie()
 }
 ```
@@ -38,12 +40,12 @@ interface Life {
 Then if you want to save your data for the next lifecycle, use an object of the `ExtendedLife`.
 ```kotlin
 /***
- * Defines an object with simply two callbacks [onBorn] and [onDie] to complete the lifecycle. The time after
- * calling [onBorn] and before [onDie] is when the object is alive.
+ * Defines an object with **extended** lifecycle respect to [Life]. It has simply two callbacks [onBorn] and [onDie] to
+ * complete the lifecycle. The time after calling [onBorn] and before [onDie] is when the object is alive.
  *
- * [AndroidExtendedLifecycleHandler] is able to register this object.
+ * [AndroidELifeHandler] is able to register this object.
  */
-interface ExtendedLife {
+interface ELife {
 
     /**
      * Calls when the life starts, depending on the [LifeSpan] while registering. This method will be called
@@ -52,6 +54,7 @@ interface ExtendedLife {
      * The [bundle] would be null in case of first born. After first die, [bundle] must be from the previous dead
      * instance.
      */
+    @MainThread
     fun onBorn(bundle: Bundle?)
 
     /**
@@ -59,8 +62,9 @@ interface ExtendedLife {
      * onPause, onStop, onDestroy or onSaveInstanceState of the SavedStateRegistryOwner.
      *
      * If you need to set the returning bundle to be null, rethink please, because it's probable that you need an
-     * instance of [Life] instead of [ExtendedLife]!
+     * instance of [Life] instead of [ELife]!
      */
+    @MainThread
     fun onDie(): Bundle
 }
 ```
@@ -74,8 +78,22 @@ Also the `LifeSpan` is a measure of how long your creature wants to be alive.
 enum class LifeSpan {
 
     /**
+     * This [LifeSpan] is just for [Life] objects who want to expand their life over multiple activities of a
+     * user flow, which means onDestroy would not make them die. Check out [LifeStore.provideLife] function for
+     * more details. Assuming the user flow includes multiple Activities.
+     */
+    USER_FLOW,
+
+    /**
+     * This [LifeSpan] is just for [Life] objects who want to expand their life over their owner activity, which
+     * means configuration changes would not make them die. Check out [FragmentActivity.provideLife] extension
+     * function for more details.
+     */
+    CONFIGURATION_CHANGED,
+
+    /**
      * In case of object being [Life], it's alive after onCreate and before onDestroy of LifecycleOwner.
-     * In case of object being [ExtendedLife], it's alive after onCreate and before onDestroy or onSaveInstanceState
+     * In case of object being [ELife], it's alive after onCreate and before onDestroy or onSaveInstanceState
      * of SavedStateRegistryOwner, depends which one is called sooner.
      */
     CREATED,
@@ -83,7 +101,7 @@ enum class LifeSpan {
     /**
      * In case of object being [Life], it's alive after onStart and before onStop or onDestroy of LifecycleOwner,
      * depends which one is called sooner.
-     * In case of object being [ExtendedLife], it's alive after onStart and before onStop or onDestroy or
+     * In case of object being [ELife], it's alive after onStart and before onStop or onDestroy or
      * onSaveInstanceState of SavedStateRegistryOwner, depends which one is called sooner.
      */
     STARTED,
@@ -91,7 +109,7 @@ enum class LifeSpan {
     /**
      * In case of object being [Life], it's alive after onResume and before onPause or onStop or onDestroy of
      * LifecycleOwner, depends which one is called sooner.
-     * In case of object being [ExtendedLife], it's alive after onResume and before onPause or onStop or onDestroy or
+     * In case of object being [ELife], it's alive after onResume and before onPause or onStop or onDestroy or
      * onSaveInstanceState of SavedStateRegistryOwner, depends which one is called sooner
      */
     RESUMED
@@ -106,22 +124,23 @@ This source has a sample app, which doesn't do anything, where you can find the 
 
 ```kotlin
 class MainActivity : ComponentActivity() {
-    
-    private val creature = object: ExtendedLife{
-        
-        override fun onBorn(bundle: Bundle) {
+
+    private val creature = object : ELife {
+
+        override fun onBorn(bundle: Bundle?) {
             // Start being alive
         }
 
-        override fun onDie(): Bundle = Bunlde () // Dead
+        override fun onDie(): Bundle = Bundle() // Dead
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ...
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_activity)
 
-        AndroidExtendedLifecycleHandler().register(this, creature, LifeSpan.CREATED, KEY)
+        AndroidELifeHandlerImpl().register(this, creature, LifeSpan.CREATED, KEY)
     }
-    
+
     companion object {
         private const val KEY = "KEY_TO_SAVE_THE_BUNDLE"
     }
