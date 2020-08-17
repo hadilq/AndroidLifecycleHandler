@@ -1,3 +1,11 @@
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.ANDROIDX_APPCOMPAT
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.KOTLIN_STDLIB
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.LIFECYCLE
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.LIFECYCLE_COMPILER
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_COMPILE_SDK
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_MIN_SDK
+import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_TARGET_SDK
+
 /**
  * Copyright 2020 Hadi Lashkari Ghouchani
 
@@ -18,27 +26,27 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("com.github.hadilq.build-plugin")
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
-    buildToolsVersion(Versions.buildTools)
+    compileSdkVersion(VERSION_COMPILE_SDK)
     defaultConfig {
         applicationId = "com.hadilq.coroutinelifecyclehandler.sample"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.targetSdk)
+        minSdkVersion(VERSION_MIN_SDK)
+        targetSdkVersion(VERSION_TARGET_SDK)
         versionCode = 1
         versionName = "1.0"
     }
 }
 
 dependencies {
-    kapt(Depends.lifecycleCompiler)
+    kapt(LIFECYCLE_COMPILER)
 
     implementation(project(":lib"))
 //    implementation("${Versions.groupId}:${Versions.artifactId}:${Versions.libVersion}")
 
-    implementation(Depends.kotlin)
-    implementation(Depends.appCompat)
-    implementation(Depends.lifecycle)
+    implementation(kotlin(KOTLIN_STDLIB))
+    implementation(ANDROIDX_APPCOMPAT)
+    implementation(LIFECYCLE)
 }

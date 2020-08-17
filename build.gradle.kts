@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    kotlin("jvm") version Versions.kotlin
-}
+
 buildscript {
+    val versionKotlin: String by project
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.5.3")
-        classpath(kotlin("gradle-plugin", version = Versions.kotlin))
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${Versions.dokka}")
-        classpath("com.dicedmelon.gradle:jacoco-android:${Versions.jacoco}")
+        classpath("com.android.tools.build:gradle:4.1.0-rc01")
+        classpath(kotlin("gradle-plugin", version = versionKotlin))
     }
 }
 
