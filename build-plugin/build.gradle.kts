@@ -57,10 +57,11 @@ gradlePlugin {
 }
 
 val versionKotlin: String by extra
+val versionAndroidBuildTools: String by extra
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib:$versionKotlin")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin-api:$versionKotlin")
   implementation("org.jetbrains.kotlin:kotlin-android-extensions:$versionKotlin")
   compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:$versionKotlin")
-  compileOnly("com.android.tools.build:gradle:3.5.4")
+  compileOnly("com.android.tools.build:gradle:$versionAndroidBuildTools")
 }

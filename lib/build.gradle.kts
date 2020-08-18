@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.github.hadilq.build.plugin.KOTLIN_STDLIB
-import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
-import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.JUNIT
+import com.github.hadilq.build.plugin.KOTLIN_STDLIB
+import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.MOCKITO
 import com.github.hadilq.build.plugin.ROBOLECTRIC
+import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
 import com.github.hadilq.build.plugin.VERSION_JACOCO
 import com.github.hadilq.build.plugin.VERSION_MIN_SDK
 import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
+//import com.github.hadilq.build.plugin.setupJacoco
 
 plugins {
   id("kotlin-multiplatform")
   id("com.android.library")
 //  id("com.vanniktech.android.junit.jacoco") version "0.16.0"
-//  id("org.jetbrains.dokka") version "1.4.0-rc"
+  id("org.jetbrains.dokka") version "1.4.0-rc"
   id("com.github.hadilq.build-plugin")
+  jacoco
 }
 
 android {
@@ -85,19 +87,45 @@ kotlin {
   }
 }
 
-//tasks.dokkaHtml {
-//  outputDirectory = "$buildDir/dokka"
-//  dokkaSourceSets {
-//    create("main") {
-//      noAndroidSdkLink = true
-//    }
-//  }
-//}
+tasks.dokkaHtml {
+  outputDirectory = "$buildDir/dokka"
+  dokkaSourceSets {
+    create("commonMain")
+    create("jvmMain")
+    create("androidMain") {
+      noAndroidSdkLink = true
+    }
+  }
+}
 
 //if (project.hasProperty("signing.keyId")) {
 //  apply from: '../buildSystem/deploy.gradle'
 //}
+//setupJacoco()
 
-//junitJacoco {
-//  jacocoVersion = VERSION_JACOCO
-//}
+jacoco {
+  toolVersion = VERSION_JACOCO
+}
+
+tasks.register<JacocoReport>("jacocoTestReport") {
+  val coverageSourceDirs = arrayOf(
+    "src/commonMain",
+    "src/jvmMain",
+    "src/androidMain"
+  )
+
+  val classFiles = File("${buildDir}/tmp/kotlin-classes/debug")
+    .walkBottomUp()
+    .toSet()
+
+  classDirectories.setFrom(classFiles)
+  sourceDirectories.setFrom(files(coverageSourceDirs))
+
+  executionData
+    .setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec", "${buildDir}/jacoco/testReleaseUnitTest.exec"))
+
+  reports {
+    xml.isEnabled = true
+    html.isEnabled = true
+  }
+}

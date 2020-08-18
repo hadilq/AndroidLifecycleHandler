@@ -17,7 +17,6 @@ package com.github.hadilq.build.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.testing.Test
 
 class BuildPlugin : Plugin<Project> {
 
@@ -54,3 +53,4 @@ const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:$VERSION_L
 const val JUNIT = "junit:junit:$VERSION_JUNIT"
 const val MOCKITO = "com.nhaarman:mockito-kotlin:$VERSION_MOCKITO"
 const val ROBOLECTRIC = "org.robolectric:robolectric:$VERSION_ROBOLECTRIC"
+
