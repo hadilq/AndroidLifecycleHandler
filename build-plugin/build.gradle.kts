@@ -45,6 +45,7 @@ plugins {
   val versionKotlin: String by extra
   id("java-gradle-plugin")
   kotlin("jvm") version versionKotlin
+  `kotlin-dsl`
 }
 
 gradlePlugin {

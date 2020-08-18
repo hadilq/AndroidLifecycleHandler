@@ -19,18 +19,16 @@ import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.MOCKITO
 import com.github.hadilq.build.plugin.ROBOLECTRIC
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
-import com.github.hadilq.build.plugin.VERSION_JACOCO
 import com.github.hadilq.build.plugin.VERSION_MIN_SDK
 import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
-//import com.github.hadilq.build.plugin.setupJacoco
+import com.github.hadilq.build.plugin.setupJacoco
+import com.github.hadilq.build.plugin.setupPublication
 
 plugins {
   id("kotlin-multiplatform")
   id("com.android.library")
-//  id("com.vanniktech.android.junit.jacoco") version "0.16.0"
   id("org.jetbrains.dokka") version "1.4.0-rc"
   id("com.github.hadilq.build-plugin")
-  jacoco
 }
 
 android {
@@ -98,34 +96,5 @@ tasks.dokkaHtml {
   }
 }
 
-//if (project.hasProperty("signing.keyId")) {
-//  apply from: '../buildSystem/deploy.gradle'
-//}
-//setupJacoco()
-
-jacoco {
-  toolVersion = VERSION_JACOCO
-}
-
-tasks.register<JacocoReport>("jacocoTestReport") {
-  val coverageSourceDirs = arrayOf(
-    "src/commonMain",
-    "src/jvmMain",
-    "src/androidMain"
-  )
-
-  val classFiles = File("${buildDir}/tmp/kotlin-classes/debug")
-    .walkBottomUp()
-    .toSet()
-
-  classDirectories.setFrom(classFiles)
-  sourceDirectories.setFrom(files(coverageSourceDirs))
-
-  executionData
-    .setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec", "${buildDir}/jacoco/testReleaseUnitTest.exec"))
-
-  reports {
-    xml.isEnabled = true
-    html.isEnabled = true
-  }
-}
+setupJacoco()
+setupPublication()
