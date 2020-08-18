@@ -25,31 +25,32 @@ class BuildPlugin : Plugin<Project> {
   }
 
   companion object {
-    private const val VERSION_LIFECYCLE = "2.2.0-rc02"
-    private const val VERSION_ANDROIDX_APPCOMPAT = "1.2.0"
-
-    private const val VERSION_JUNIT = "4.12"
-    private const val VERSION_MOCKITO = "1.4.0"
-    private const val VERSION_ROBOLECTRIC = "4.3"
-
-    const val VERSION_JACOCO = "0.8.5"
-
-    const val GOURP_ID = "com.github.hadilq"
-    const val ARTIFACT_ID = "androidlifecyclehandler"
-    const val LIB_VERSION = "0.3.0"
-
-    const val VERSION_COMPILE_SDK = 29
-    const val VERSION_MIN_SDK = 15
-    const val VERSION_TARGET_SDK = 29
-
-    const val KOTLIN_STDLIB = "stdlib"
-    const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:$VERSION_ANDROIDX_APPCOMPAT"
-
-    const val LIFECYCLE = "androidx.lifecycle:lifecycle-extensions:$VERSION_LIFECYCLE"
-    const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:$VERSION_LIFECYCLE"
-
-    const val JUNIT = "junit:junit:$VERSION_JUNIT"
-    const val MOCKITO = "com.nhaarman:mockito-kotlin:$VERSION_MOCKITO"
-    const val ROBOLECTRIC = "org.robolectric:robolectric:$VERSION_ROBOLECTRIC"
   }
 }
+
+private const val VERSION_LIFECYCLE = "2.2.0-rc02"
+private const val VERSION_ANDROIDX_APPCOMPAT = "1.2.0"
+
+private const val VERSION_JUNIT = "4.12"
+private const val VERSION_MOCKITO = "1.4.0"
+private const val VERSION_ROBOLECTRIC = "4.3"
+
+const val VERSION_JACOCO = "0.8.5"
+
+const val GOURP_ID = "com.github.hadilq"
+const val ARTIFACT_ID = "androidlifecyclehandler"
+const val LIB_VERSION = "0.3.0"
+
+const val VERSION_COMPILE_SDK = 29
+const val VERSION_MIN_SDK = 15
+const val VERSION_TARGET_SDK = 29
+
+const val KOTLIN_STDLIB = "stdlib"
+const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:$VERSION_ANDROIDX_APPCOMPAT"
+
+const val LIFECYCLE = "androidx.lifecycle:lifecycle-extensions:$VERSION_LIFECYCLE"
+const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:$VERSION_LIFECYCLE"
+
+const val JUNIT = "junit:junit:$VERSION_JUNIT"
+const val MOCKITO = "com.nhaarman:mockito-kotlin:$VERSION_MOCKITO"
+const val ROBOLECTRIC = "org.robolectric:robolectric:$VERSION_ROBOLECTRIC"

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.KOTLIN_STDLIB
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_COMPILE_SDK
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.LIFECYCLE
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.JUNIT
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.LIFECYCLE_COMPILER
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.MOCKITO
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.ROBOLECTRIC
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_JACOCO
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_MIN_SDK
-import com.github.hadilq.build.plugin.BuildPlugin.Companion.VERSION_TARGET_SDK
+import com.github.hadilq.build.plugin.KOTLIN_STDLIB
+import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
+import com.github.hadilq.build.plugin.LIFECYCLE
+import com.github.hadilq.build.plugin.JUNIT
+import com.github.hadilq.build.plugin.LIFECYCLE_COMPILER
+import com.github.hadilq.build.plugin.MOCKITO
+import com.github.hadilq.build.plugin.ROBOLECTRIC
+import com.github.hadilq.build.plugin.VERSION_JACOCO
+import com.github.hadilq.build.plugin.VERSION_MIN_SDK
+import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
 
 plugins {
   id("com.android.library")
