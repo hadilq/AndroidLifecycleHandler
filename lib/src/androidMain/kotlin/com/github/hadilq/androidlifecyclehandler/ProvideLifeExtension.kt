@@ -8,17 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.hadilq.androidlifecyclehandler.LifeSpan.CONFIGURATION_CHANGED
 
 /**
- * A factory to provide [Life] if needed.
- */
-interface LifeFactory<out T : Life> {
-
-    /**
-     * Creates a life.
-     */
-    fun get(): T
-}
-
-/**
  * Provides a life object with [CONFIGURATION_CHANGED] [LifeSpan], which means its lifecycle is the same as an
  * ordinary [ViewModel]. There are two advantage of using a [Life] over a [ViewModel]. One is that it unify the
  * concept of [Life]. Second one is that this method can provide a [SLife] object where is suitable to observe

@@ -19,10 +19,10 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 
 /**
- * The handler to keep all parts together and handle calling of [born] and [die] of [Life],
+ * The handler to keep all parts together and handle calling of [onBorn] and [onDie] of [Life],
  * based on [LifeSpan] that they [register] by.
  */
-interface AndroidLifeHandler {
+interface AndroidLifeHandler : LifeHandler {
 
     /**
      * Registers an instance of [life], based on the [lifeSpan], to handle calling of [Life.onBorn] and

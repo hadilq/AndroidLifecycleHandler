@@ -1,7 +1,5 @@
 package com.github.hadilq.androidlifecyclehandler
 
-import androidx.annotation.MainThread
-
 /**
  * Defines a [Life] object that can **sync** other lives with the same lifecycle.
  */
@@ -13,7 +11,9 @@ abstract class SLife : Life {
 
     protected fun Life.sync(): Boolean = lives.add(this).also { if (isAlive) onBorn() }
 
-    @MainThread
+    /**
+     * It doesn't make sense to make [onBorn] and [onDie] methods thread-safe.
+     */
     override fun onBorn() {
         if (!isAlive) {
             isAlive = true
@@ -21,7 +21,9 @@ abstract class SLife : Life {
         }
     }
 
-    @MainThread
+    /**
+     * It doesn't make sense to make [onBorn] and [onDie] methods thread-safe.
+     */
     override fun onDie() {
         if (isAlive) {
             isAlive = false

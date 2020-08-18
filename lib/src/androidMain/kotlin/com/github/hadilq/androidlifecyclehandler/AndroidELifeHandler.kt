@@ -18,10 +18,10 @@ package com.github.hadilq.androidlifecyclehandler
 import androidx.savedstate.SavedStateRegistryOwner
 
 /**
- * The handler to keep all parts together and handle calling of [born] and [die] of [ELife],
+ * The handler to keep all parts together and handle calling of [onBorn] and [onDie] of [ELife],
  * based on [LifeSpan] that they [register] by.
  */
-interface AndroidELifeHandler {
+interface AndroidELifeHandler : LifeHandler {
 
     /**
      * Registers an instance of [life], based on the [lifeSpan], to handle calling of [ELife.onBorn] and
