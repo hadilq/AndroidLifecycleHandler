@@ -17,7 +17,6 @@ import com.github.hadilq.build.plugin.KOTLIN_STDLIB
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
 import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.JUNIT
-import com.github.hadilq.build.plugin.LIFECYCLE_COMPILER
 import com.github.hadilq.build.plugin.MOCKITO
 import com.github.hadilq.build.plugin.ROBOLECTRIC
 import com.github.hadilq.build.plugin.VERSION_JACOCO
@@ -25,56 +24,80 @@ import com.github.hadilq.build.plugin.VERSION_MIN_SDK
 import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
 
 plugins {
+  id("kotlin-multiplatform")
   id("com.android.library")
-  kotlin("android")
-  kotlin("android.extensions")
-  kotlin("kapt")
-  id("com.vanniktech.android.junit.jacoco") version "0.16.0"
-  id("org.jetbrains.dokka") version "1.4.0-rc"
+//  id("com.vanniktech.android.junit.jacoco") version "0.16.0"
+//  id("org.jetbrains.dokka") version "1.4.0-rc"
   id("com.github.hadilq.build-plugin")
 }
 
 android {
   compileSdkVersion(VERSION_COMPILE_SDK)
+
   defaultConfig {
-    minSdkVersion(VERSION_MIN_SDK)
     targetSdkVersion(VERSION_TARGET_SDK)
+    minSdkVersion(VERSION_MIN_SDK)
   }
 
   compileOptions {
     sourceCompatibility(JavaVersion.VERSION_1_8)
     targetCompatibility(JavaVersion.VERSION_1_8)
   }
+}
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
+kotlin {
+  android {
+    publishLibraryVariants("release", "debug")
   }
-}
+  jvm {
+    compilations.all {
+      kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+      }
+    }
+  }
 
-dependencies {
-  kapt(LIFECYCLE_COMPILER)
+  sourceSets {
+    commonMain {
+      dependencies {
+      }
+    }
 
-  implementation(kotlin(KOTLIN_STDLIB))
-  implementation(LIFECYCLE)
+    commonTest {
+      dependencies {
+      }
+    }
 
-  testImplementation(JUNIT)
-  testImplementation(MOCKITO)
-  testImplementation(ROBOLECTRIC)
-}
+    val androidMain by getting {
+      dependencies {
+        implementation(kotlin(KOTLIN_STDLIB))
+        implementation(LIFECYCLE)
+      }
+    }
 
-tasks.dokkaHtml {
-  outputDirectory = "$buildDir/dokka"
-  dokkaSourceSets {
-    create("main") {
-      noAndroidSdkLink = true
+    val androidTest by getting {
+      dependencies {
+        implementation(JUNIT)
+        implementation(MOCKITO)
+        implementation(ROBOLECTRIC)
+      }
     }
   }
 }
+
+//tasks.dokkaHtml {
+//  outputDirectory = "$buildDir/dokka"
+//  dokkaSourceSets {
+//    create("main") {
+//      noAndroidSdkLink = true
+//    }
+//  }
+//}
 
 //if (project.hasProperty("signing.keyId")) {
 //  apply from: '../buildSystem/deploy.gradle'
 //}
 
-junitJacoco {
-  jacocoVersion = VERSION_JACOCO
-}
+//junitJacoco {
+//  jacocoVersion = VERSION_JACOCO
+//}
