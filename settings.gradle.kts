@@ -13,25 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-buildscript {
-    val versionKotlin: String by project
-    val versionAndroidBuildTools: String by project
-
+enableFeaturePreview("GRADLE_METADATA")
+pluginManagement {
     repositories {
-        google()
+        gradlePluginPortal()
         jcenter()
     }
-    dependencies {
-        classpath("com.android.tools.build:gradle:$versionAndroidBuildTools")
-        classpath(kotlin("gradle-plugin", version = versionKotlin))
-    }
 }
+rootProject.name = "AndroidLifecycleHandler"
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
-    }
-}
+include("app")
+include("lib")
+
+includeBuild("build-plugin")
