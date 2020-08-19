@@ -76,9 +76,9 @@ fun Project.setupJacoco() {
 
     tasks.register<JacocoReport>("jacocoTestReport") {
       val coverageSourceDirs = arrayOf(
-        "src/commonMain",
-        "src/jvmMain",
-        "src/androidMain"
+        "src/commonMain/kotlin",
+        "src/jvmMain/kotlin",
+        "src/androidMain/kotlin"
       )
 
       val classFiles = File("${buildDir}/tmp/kotlin-classes/debug")
@@ -89,13 +89,12 @@ fun Project.setupJacoco() {
       sourceDirectories.setFrom(files(coverageSourceDirs))
 
       executionData
-        .setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec", "${buildDir}/jacoco/testReleaseUnitTest.exec"))
+        .setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec"))
 
       reports {
         xml.isEnabled = true
         html.isEnabled = true
       }
-
     }
   }
 }

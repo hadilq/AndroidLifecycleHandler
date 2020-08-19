@@ -17,7 +17,7 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class AndroidELifecycleHandlerBundleTest {
+class AndroidELifeHandlerBundleTest {
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
