@@ -17,6 +17,7 @@ package com.github.hadilq.build.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.BasePluginConvention
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.getByType
@@ -31,7 +32,7 @@ import java.io.File
 
 class BuildPlugin : Plugin<Project> {
 
-  override fun apply(target: Project) = target.apply()
+  override fun apply(target: Project) = target.setup()
 }
 
 private const val VERSION_LIFECYCLE = "2.2.0-rc02"
@@ -52,6 +53,8 @@ const val VERSION_MIN_SDK = 15
 const val VERSION_TARGET_SDK = 29
 
 const val KOTLIN_STDLIB = "stdlib"
+const val KOTLIN_TEST_COMMON = "test-common"
+const val KOTLIN_TEST_ANNOTATIONS_COMMON = "test-annotations-common"
 const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:$VERSION_ANDROIDX_APPCOMPAT"
 
 const val LIFECYCLE = "androidx.lifecycle:lifecycle-extensions:$VERSION_LIFECYCLE"
@@ -60,8 +63,9 @@ const val LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:$VERSION_L
 const val JUNIT = "junit:junit:$VERSION_JUNIT"
 const val MOCKITO = "com.nhaarman:mockito-kotlin:$VERSION_MOCKITO"
 const val ROBOLECTRIC = "org.robolectric:robolectric:$VERSION_ROBOLECTRIC"
+const val MOCKK_COMMON = "io.mockk:mockk-common:1.10.0"
 
-fun Project.apply() {
+private fun Project.setup() {
 }
 
 fun Project.setupJacoco() {
@@ -105,6 +109,10 @@ fun Project.setupPublication() {
 
   group = GROUP_ID
   version = LIB_VERSION
+
+  convention.plugins.values.filterIsInstance<BasePluginConvention>().map {
+    it.archivesBaseName = ARTIFACT_ID
+  }
 
   val userId = "hadilq"
   val userName = "Hadi Lashkari Ghouchani"
@@ -153,9 +161,9 @@ fun Project.setupPublication() {
     repositories {
       maven {
         url = if ("$version".endsWith("-SNAPSHOT"))
-          uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-        else
           uri("https://oss.sonatype.org/content/repositories/snapshots/")
+        else
+          uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
         credentials {
           username = findProperty("ossrhUsername")?.toString()
           password = findProperty("ossrhPassword")?.toString()

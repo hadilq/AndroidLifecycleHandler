@@ -15,8 +15,11 @@
  */
 import com.github.hadilq.build.plugin.JUNIT
 import com.github.hadilq.build.plugin.KOTLIN_STDLIB
+import com.github.hadilq.build.plugin.KOTLIN_TEST_ANNOTATIONS_COMMON
+import com.github.hadilq.build.plugin.KOTLIN_TEST_COMMON
 import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.MOCKITO
+import com.github.hadilq.build.plugin.MOCKK_COMMON
 import com.github.hadilq.build.plugin.ROBOLECTRIC
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
 import com.github.hadilq.build.plugin.VERSION_MIN_SDK
@@ -65,6 +68,9 @@ kotlin {
 
     commonTest {
       dependencies {
+        implementation(kotlin(KOTLIN_TEST_COMMON))
+        implementation(kotlin(KOTLIN_TEST_ANNOTATIONS_COMMON))
+        implementation(MOCKK_COMMON)
       }
     }
 

@@ -24,7 +24,8 @@ import androidx.annotation.MainThread
  *
  * [AndroidELifeHandler] is able to register this object.
  */
-interface ELife {
+@Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+interface ELife : DLife<Bundle> {
 
     /**
      * Calls when the life starts, depending on the [LifeSpan] while registering. This method will be called
@@ -34,7 +35,7 @@ interface ELife {
      * instance.
      */
     @MainThread
-    fun onBorn(bundle: Bundle?)
+    override fun onBorn(bundle: Bundle?)
 
     /**
      * Calls when the life ends, depending on the [LifeSpan] while registering. This method will be called
@@ -44,5 +45,5 @@ interface ELife {
      * instance of [Life] instead of [ELife]!
      */
     @MainThread
-    fun onDie(): Bundle
+    override fun onDie(): Bundle
 }
