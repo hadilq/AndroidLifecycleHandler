@@ -24,7 +24,6 @@ import com.github.hadilq.build.plugin.ROBOLECTRIC
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
 import com.github.hadilq.build.plugin.VERSION_MIN_SDK
 import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
-import com.github.hadilq.build.plugin.publishing
 import com.github.hadilq.build.plugin.setupJacoco
 import com.github.hadilq.build.plugin.setupPublication
 
@@ -56,7 +55,7 @@ android {
 
 kotlin {
   android {
-    publishLibraryVariantsGroupedByFlavor = true
+    publishLibraryVariants = listOf("release")
   }
   jvm {
     compilations.all {
