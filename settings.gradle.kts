@@ -18,11 +18,12 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         jcenter()
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/dokka/dev")
     }
 }
 rootProject.name = "AndroidLifecycleHandler"
 
 include("app")
-include("lib")
+include("android-lifecycle-handler")
 
 includeBuild("build-plugin")

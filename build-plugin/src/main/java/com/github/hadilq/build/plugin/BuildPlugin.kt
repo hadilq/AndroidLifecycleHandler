@@ -15,15 +15,21 @@
  */
 package com.github.hadilq.build.plugin
 
+import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.BasePluginConvention
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.bundling.Jar
+import org.gradle.kotlin.dsl.creating
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import org.gradle.plugins.signing.SigningExtension
 import org.gradle.plugins.signing.SigningPlugin
 import org.gradle.testing.jacoco.plugins.JacocoPlugin
 import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
@@ -45,8 +51,7 @@ private const val VERSION_ROBOLECTRIC = "4.3"
 const val VERSION_JACOCO = "0.8.5"
 
 const val GROUP_ID = "com.github.hadilq"
-const val ARTIFACT_ID = "androidlifecyclehandler"
-const val LIB_VERSION = "0.3.0"
+const val LIB_VERSION = "0.4.0"
 
 const val VERSION_COMPILE_SDK = 29
 const val VERSION_MIN_SDK = 15
@@ -109,18 +114,35 @@ fun Project.setupPublication() {
   group = GROUP_ID
   version = LIB_VERSION
 
-  convention.plugins.values.filterIsInstance<BasePluginConvention>().map {
-    it.archivesBaseName = ARTIFACT_ID
-  }
-
   val userId = "hadilq"
   val userName = "Hadi Lashkari Ghouchani"
   val userEmail = "hadilq.dev@gmail.com"
   val githubUrl = "https://github.com/hadilq/AndroidLifecycleHandler"
   val githubScmUrl = "scm:git@github.com:hadilq/AndroidLifecycleHandler.git"
 
+  val javadocJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    archiveClassifier.value("javadoc")
+    from(tasks.getByName("dokkaJavadoc"))
+  }
+
+  val sourcesJar by tasks.creating(Jar::class) {
+    archiveClassifier.value("sources")
+  }
+
+  publishing {
+    publications {
+      configure(withType<MavenPublication>()) {
+        signing.sign(this)
+        artifact(javadocJar)
+      }
+      withType<MavenPublication>()["kotlinMultiplatform"].artifact(sourcesJar)
+    }
+  }
+
   extensions.getByType<PublishingExtension>().run {
     publications.withType<MavenPublication>().all {
+
       pom {
         withXml {
           asNode().apply {
@@ -152,9 +174,6 @@ fun Project.setupPublication() {
         }
       }
 
-      extensions.getByType<SigningExtension>().run {
-        sign(this@all)
-      }
     }
 
     repositories {
@@ -168,7 +187,32 @@ fun Project.setupPublication() {
           password = findProperty("ossrhPassword")?.toString()
         }
       }
-
     }
+
   }
 }
+
+/**
+ * Retrieves the [signing][org.gradle.plugins.signing.SigningExtension] extension.
+ */
+val org.gradle.api.Project.`signing`: org.gradle.plugins.signing.SigningExtension
+  get() =
+    (this as org.gradle.api.plugins.ExtensionAware).extensions.getByName("signing") as org.gradle.plugins.signing.SigningExtension
+
+/**
+ * Configures the [signing][org.gradle.plugins.signing.SigningExtension] extension.
+ */
+fun org.gradle.api.Project.`signing`(configure: org.gradle.plugins.signing.SigningExtension.() -> Unit): Unit =
+  (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("signing", configure)
+
+/**
+ * Provides the existing [archives][org.gradle.api.artifacts.Configuration] element.
+ */
+val org.gradle.api.NamedDomainObjectContainer<org.gradle.api.artifacts.Configuration>.`archives`: NamedDomainObjectProvider<Configuration>
+  get() = named<org.gradle.api.artifacts.Configuration>("archives")
+
+/**
+ * Configures the [publishing][org.gradle.api.publish.PublishingExtension] extension.
+ */
+fun org.gradle.api.Project.`publishing`(configure: org.gradle.api.publish.PublishingExtension.() -> Unit): Unit =
+  (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("publishing", configure)

@@ -2,6 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="AndroidLifecycleHandler.android-lifecycle-handler.commonMain" target="1.8" />
+      <module name="AndroidLifecycleHandler.android-lifecycle-handler.commonTest" target="1.8" />
+      <module name="AndroidLifecycleHandler.android-lifecycle-handler.jvmMain" target="1.8" />
+      <module name="AndroidLifecycleHandler.android-lifecycle-handler.jvmTest" target="1.8" />
       <module name="AndroidLifecycleHandler.lib.commonMain" target="1.8" />
       <module name="AndroidLifecycleHandler.lib.commonTest" target="1.8" />
       <module name="AndroidLifecycleHandler.lib.jvmMain" target="1.8" />

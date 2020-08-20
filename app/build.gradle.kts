@@ -43,7 +43,7 @@ android {
 dependencies {
     kapt(LIFECYCLE_COMPILER)
 
-    implementation(project(":lib"))
+    implementation(project(":android-lifecycle-handler"))
 //    implementation("${Versions.groupId}:${Versions.artifactId}:${Versions.libVersion}")
 
     implementation(kotlin(KOTLIN_STDLIB))

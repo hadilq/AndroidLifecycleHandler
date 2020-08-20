@@ -30,7 +30,7 @@ import com.github.hadilq.build.plugin.setupPublication
 plugins {
   id("kotlin-multiplatform")
   id("com.android.library")
-  id("org.jetbrains.dokka") version "1.4.0-rc"
+  id("org.jetbrains.dokka") version "1.4.0-dev-38"
   id("com.github.hadilq.build-plugin")
 }
 
@@ -50,7 +50,7 @@ android {
 
 kotlin {
   android {
-    publishLibraryVariants("release", "debug")
+    publishLibraryVariantsGroupedByFlavor = true
   }
   jvm {
     compilations.all {
@@ -89,17 +89,7 @@ kotlin {
       }
     }
   }
-}
 
-tasks.dokkaHtml {
-  outputDirectory = "$buildDir/dokka"
-  dokkaSourceSets {
-    create("commonMain")
-    create("jvmMain")
-    create("androidMain") {
-      noAndroidSdkLink = true
-    }
-  }
 }
 
 setupJacoco()
