@@ -134,17 +134,14 @@ fun Project.setupPublication() {
 
   publishing {
     publications {
-      configure(withType<MavenPublication>()) {
-        signing.sign(this)
-        artifact(javadocJar)
-      }
       withType<MavenPublication>()["kotlinMultiplatform"].artifact(sourcesJar)
     }
   }
 
   extensions.getByType<PublishingExtension>().run {
     publications.withType<MavenPublication>().all {
-
+      signing.sign(this)
+      artifact(javadocJar)
       pom {
         withXml {
           asNode().apply {
