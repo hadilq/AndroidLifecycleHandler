@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 import com.github.hadilq.build.plugin.ANDROIDX_APPCOMPAT
+import com.github.hadilq.build.plugin.GROUP_ID
 import com.github.hadilq.build.plugin.KOTLIN_STDLIB
+import com.github.hadilq.build.plugin.LIB_VERSION
 import com.github.hadilq.build.plugin.LIFECYCLE
 import com.github.hadilq.build.plugin.LIFECYCLE_COMPILER
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
@@ -32,7 +34,7 @@ plugins {
 android {
     compileSdkVersion(VERSION_COMPILE_SDK)
     defaultConfig {
-        applicationId = "com.hadilq.coroutinelifecyclehandler.sample"
+        applicationId = "com.hadilq.androidlifecyclehandler.sample"
         minSdkVersion(VERSION_MIN_SDK)
         targetSdkVersion(VERSION_TARGET_SDK)
         versionCode = 1
@@ -43,8 +45,8 @@ android {
 dependencies {
     kapt(LIFECYCLE_COMPILER)
 
-    implementation(project(":android-lifecycle-handler"))
-//    implementation("${Versions.groupId}:${Versions.artifactId}:${Versions.libVersion}")
+//    implementation(project(":android-lifecycle-handler"))
+    implementation("${GROUP_ID}:android-lifecycle-handler-android:${LIB_VERSION}")
 
     implementation(kotlin(KOTLIN_STDLIB))
     implementation(ANDROIDX_APPCOMPAT)
