@@ -24,13 +24,13 @@ import com.github.hadilq.build.plugin.ROBOLECTRIC
 import com.github.hadilq.build.plugin.VERSION_COMPILE_SDK
 import com.github.hadilq.build.plugin.VERSION_MIN_SDK
 import com.github.hadilq.build.plugin.VERSION_TARGET_SDK
+import com.github.hadilq.build.plugin.publishing
 import com.github.hadilq.build.plugin.setupJacoco
 import com.github.hadilq.build.plugin.setupPublication
 
 plugins {
   id("kotlin-multiplatform")
   id("com.android.library")
-  id("org.jetbrains.dokka") version "1.4.0-dev-38"
   id("com.github.hadilq.build-plugin")
 }
 
@@ -40,6 +40,12 @@ android {
   defaultConfig {
     targetSdkVersion(VERSION_TARGET_SDK)
     minSdkVersion(VERSION_MIN_SDK)
+  }
+
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = false
+    }
   }
 
   compileOptions {

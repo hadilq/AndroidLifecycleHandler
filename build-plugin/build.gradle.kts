@@ -38,6 +38,7 @@ buildscript {
 repositories {
   google()
   jcenter()
+  maven("https://maven.pkg.jetbrains.space/kotlin/p/dokka/dev")
 }
 
 
@@ -63,6 +64,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib:$versionKotlin")
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin-api:$versionKotlin")
   implementation("org.jetbrains.kotlin:kotlin-android-extensions:$versionKotlin")
+  implementation("org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin:1.4.0-dev-38")
   compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:$versionKotlin")
   compileOnly("com.android.tools.build:gradle:$versionAndroidBuildTools")
 }

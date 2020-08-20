@@ -105,6 +105,8 @@ fun Project.setupJacoco() {
 }
 
 fun Project.setupPublication() {
+  plugins.apply("org.jetbrains.dokka")
+
   if (!hasProperty("signing.keyId")) {
     return
   }
