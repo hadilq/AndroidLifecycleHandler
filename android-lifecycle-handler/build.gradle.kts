@@ -54,9 +54,7 @@ android {
 }
 
 kotlin {
-  android {
-    publishLibraryVariants = listOf("release", "debug")
-  }
+  android()
   jvm {
     compilations.all {
       kotlinOptions {
