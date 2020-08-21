@@ -151,18 +151,18 @@ Enjoy!
 
 Download
 ---
-After version 0.4.0 this library is a Kotlin Multiplatdform library, so depend on what kind of module you use it in, you can use different artifact IDs. Download via gradle
+Since version 0.4.0 this library is a Kotlin Multiplatdform library, so depend on what kind of module you use it in, you can use different artifact IDs. Download via gradle
 ```groovy
 implementation "com.github.hadilq:android-lifecycle-handler-android:$libVersion"
 ```
 where the `libVersion` is [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler)
-Use the above one if you already using it or you need it in an android module. Use
+Use the above one if you already using this library or you need it in an android module. Use
 ```groovy
 implementation "com.github.hadilq:android-lifecycle-handler-jvm:$libVersion"
 ```
-if you need **only** the interfaces in a Java module. And finally, in a multiplatform module you would use it as
+if you need **only** the interfaces in a Java module. And finally, in a common module of multiplatform project you would use those interfaces as
 ```groovy
-implementation "com.github.hadilq:android-lifecycle-handler:$libVersion"
+implementation "com.github.hadilq:android-lifecycle-handler-metadata:$libVersion"
 ```
 
 Contribution

@@ -1,6 +1,20 @@
 Changelog
 =========
 
+0.4.2
+-----
+
+_2020_08-21_
+
+Try to fix the android library variants by disabling GenerateModuleMetadata task.
+
+0.4.1
+-----
+
+_2020_08-21_
+
+Try to fix the android library variants.
+
 0.4.0
 -----
 
@@ -10,6 +24,7 @@ _2020-08-20_
   + The previous artifactId was `androidlifecyclehandler` which is now as following:
      * For Android, it's `android-lifecycle-handler-android`
      * For Jvm, it's `android-lifecycle-handler-jvm`
+     * For Common, it's `android-lifecycle-handler-metadata`
  - Remove `buildSrc`, instead use composite build with `build-plugin`
  - Move `Life`, `LifeFactory`, `LifeHandler`, and `Slife`
  - Create `DLife` to extend `ELife` from it
