@@ -54,7 +54,9 @@ android {
 }
 
 kotlin {
-  android()
+  android {
+    publishLibraryVariants = listOf("release")
+  }
   jvm {
     compilations.all {
       kotlinOptions {
@@ -93,6 +95,10 @@ kotlin {
     }
   }
 
+}
+
+tasks.withType<GenerateModuleMetadata> {
+  enabled = false
 }
 
 setupJacoco()
