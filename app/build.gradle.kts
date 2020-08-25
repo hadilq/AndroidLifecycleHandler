@@ -45,8 +45,8 @@ android {
 dependencies {
     kapt(LIFECYCLE_COMPILER)
 
-//    implementation(project(":android-lifecycle-handler"))
-    implementation("${GROUP_ID}:android-lifecycle-handler-android:${LIB_VERSION}")
+    implementation(project(":android-lifecycle-handler"))
+//    implementation("${GROUP_ID}:android-lifecycle-handler-android:${LIB_VERSION}")
 
     implementation(kotlin(KOTLIN_STDLIB))
     implementation(ANDROIDX_APPCOMPAT)
