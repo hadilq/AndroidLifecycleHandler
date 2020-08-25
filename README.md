@@ -1,4 +1,4 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/android-lifecycle-handler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/android-lifecycle-handler)
 [![CircleCI](https://circleci.com/gh/hadilq/AndroidLifecycleHandler.svg?style=svg)](https://circleci.com/gh/hadilq/AndroidLifecycleHandler)
 [![codecov](https://codecov.io/gh/hadilq/AndroidLifecycleHandler/branch/master/graph/badge.svg)](https://codecov.io/gh/hadilq/AndroidLifecycleHandler)
 
@@ -155,7 +155,7 @@ Since version 0.4.0 this library is a Kotlin Multiplatdform library, so depend o
 ```groovy
 implementation "com.github.hadilq:android-lifecycle-handler-android:$libVersion"
 ```
-where the `libVersion` is [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/androidlifecyclehandler)
+where the `libVersion` is [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/android-lifecycle-handler/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hadilq/android-lifecycle-handler)
 Use the above one if you already using this library or you need it in an android module. Use
 ```groovy
 implementation "com.github.hadilq:android-lifecycle-handler-jvm:$libVersion"
