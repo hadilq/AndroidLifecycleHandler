@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.4.3
+-----
+
+_2020-08-25_
+
+Update androidx.lifecycle libray.
+
 0.4.2
 -----
 
